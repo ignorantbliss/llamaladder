@@ -1,0 +1,113 @@
+<html>
+	<head>
+		<style>
+.st0 {
+	stroke: black;
+	stroke-width: 3px;
+	fill: none;
+}
+
+.at0 {
+	stroke: red;
+	stroke-width: 3px;
+	fill: none;
+}
+		</style>
+		<script>
+var logic = {
+  "rung": [
+    {
+      "input": [
+        {"name": "Input 1", "type": "coil", "state": "on"}
+      ],
+      "timer": {
+        "name": "Timer 1",
+        "type": "on-delay",
+        "duration": 15,
+        "units": "seconds"
+      }
+    },
+    {
+      "input": [
+        {"name": "Timer 1", "type": "timer", "state": "done"}
+      ],
+      "output": {"name": "Alert", "type": "coil", "state": "on"}
+    },
+    {
+      "input": [
+        {"name": "Input 1", "type": "coil", "state": "on"},
+        {"name": "Input 2", "type": "coil", "state": "on"}
+      ],
+      "timer": {
+        "name": "Timer 2",
+        "type": "on-delay",
+        "duration": 10,
+        "units": "seconds"
+      }
+    },
+    {
+      "input": [
+        {"name": "Timer 2", "type": "timer", "state": "done"}
+      ],
+      "output": {"name": "Alert", "type": "coil", "state": "on"}
+    }
+  ]
+}
+		</script>
+		<script src="../src/llamaladder.js"></script>
+		
+	</head>
+	<body>
+		<svg id="diagram" width="800px" height="500px" viewBox="0 0 800 500">
+		</svg>				
+		<h2>An example showing on-delay timers.</h2>
+		<h3>Original Query</h3>
+		<p>Show me the ladder logic (in JSON format) for a system that will alert if Input 1 is held down for more than 15 seconds, or alert in 10 seconds if both Input 1 and Input 2 are closed.</p>
+		<h3>Resulting JSON</h3>		
+		<p><pre>
+  <code>{
+  &quot;rung&quot;: [
+    {
+      &quot;input&quot;: [
+        {&quot;name&quot;: &quot;Input 1&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
+      ],
+      &quot;timer&quot;: {
+        &quot;name&quot;: &quot;Timer 1&quot;,
+        &quot;type&quot;: &quot;on-delay&quot;,
+        &quot;duration&quot;: 15,
+        &quot;units&quot;: &quot;seconds&quot;
+      }
+    },
+    {
+      &quot;input&quot;: [
+        {&quot;name&quot;: &quot;Timer 1&quot;, &quot;type&quot;: &quot;timer&quot;, &quot;state&quot;: &quot;done&quot;}
+      ],
+      &quot;output&quot;: {&quot;name&quot;: &quot;Alert&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
+    },
+    {
+      &quot;input&quot;: [
+        {&quot;name&quot;: &quot;Input 1&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;},
+        {&quot;name&quot;: &quot;Input 2&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
+      ],
+      &quot;timer&quot;: {
+        &quot;name&quot;: &quot;Timer 2&quot;,
+        &quot;type&quot;: &quot;on-delay&quot;,
+        &quot;duration&quot;: 10,
+        &quot;units&quot;: &quot;seconds&quot;
+      }
+    },
+    {
+      &quot;input&quot;: [
+        {&quot;name&quot;: &quot;Timer 2&quot;, &quot;type&quot;: &quot;timer&quot;, &quot;state&quot;: &quot;done&quot;}
+      ],
+      &quot;output&quot;: {&quot;name&quot;: &quot;Alert&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
+    }
+  ]
+}</code></pre></p>
+		<script>
+ll = new LadderLogic();
+ll.parse(logic['rung'],'#diagram');		
+ll.makeInteractive();
+		</script>
+	</body>
+</html>

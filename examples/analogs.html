@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<style>
+.st0 {
+	stroke: black;
+	stroke-width: 3px;
+	fill: none;
+}
+
+.at0 {
+	stroke: red;
+	stroke-width: 3px;
+	fill: none;
+}
+		</style>
+		<script>
+var logic = {
+  "rung": [
+    {
+      "input": [
+        {
+          "name": "Temperature 1",
+          "type": "analog",
+          "comparison": "greater_than",
+          "value": 120
+        }
+      ],
+      "output": {"name": "Output Coil", "type": "coil", "state": "on"}
+    },
+    {
+      "input": [
+        {
+          "name": "Temperature 2",
+          "type": "analog",
+          "comparison": "greater_than",
+          "value": 120
+        }
+      ],
+      "output": {"name": "Output Coil", "type": "coil", "state": "on"}
+    }
+  ]
+};	
+		</script>
+		<script src="../src/llamaladder.js"></script>
+		
+	</head>
+	<body>
+		<svg id="diagram" width="800px" height="400px" viewBox="0 0 800 400">
+		</svg>				
+		<h2>An example showing analog comparitors</h2>
+		<h3>Original Query</h3>
+		<p>Show me the ladder logic for a system that has two anlogue inputs for temperature and turns on a coil when either temperature is greater than 120 degrees.</p>
+		<h3>Resulting JSON</h3>		
+		<p><pre>
+  <code>{
+  &quot;rung&quot;: [
+    {
+      &quot;input&quot;: [
+        {
+          &quot;name&quot;: &quot;Temperature 1&quot;,
+          &quot;type&quot;: &quot;analog&quot;,
+          &quot;comparison&quot;: &quot;greater_than&quot;,
+          &quot;value&quot;: 120
+        }
+      ],
+      &quot;output&quot;: {&quot;name&quot;: &quot;Output Coil&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
+    },
+    {
+      &quot;input&quot;: [
+        {
+          &quot;name&quot;: &quot;Temperature 2&quot;,
+          &quot;type&quot;: &quot;analog&quot;,
+          &quot;comparison&quot;: &quot;greater_than&quot;,
+          &quot;value&quot;: 120
+        }
+      ],
+      &quot;output&quot;: {&quot;name&quot;: &quot;Output Coil&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
+    }
+  ]
+};	</code></pre></p>
+		<script>
+ll = new LadderLogic();
+ll.parse(logic['rung'],'#diagram');		
+ll.makeInteractive();
+		</script>
+	</body>
+</html>

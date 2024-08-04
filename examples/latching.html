@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<style>
+.st0 {
+	stroke: black;
+	stroke-width: 3px;
+	fill: none;
+}
+
+.at0 {
+	stroke: red;
+	stroke-width: 3px;
+	fill: none;
+}
+		</style>
+		<script>
+var logic = {
+  "rung": [
+    {
+      "input": [
+        {"name": "I1", "type": "coil", "state": "on", "edge": "rising"}
+      ],
+      "output": {"name": "O1", "type": "latch", "state": "on"}
+    },
+    {
+      "input": [
+        {"name": "I1", "type": "coil", "state": "on", "edge": "rising"},
+        {"name": "O1", "type": "coil", "state": "on"}
+      ],
+      "output": {"name": "O1", "type": "latch", "state": "off"}
+    }
+  ]
+}
+		</script>
+		<script src="../src/llamaladder.js"></script>
+		
+	</head>
+	<body>
+		<svg id="diagram" width="800px" height="500px" viewBox="0 0 800 500">
+		</svg>				
+		<h2>An example showing latching &amp; releasing.</h2>
+		<h3>Original Query</h3>
+		<p>Show me the ladder logic (in JSON format) for a system that turn on an output (O1) when an input (I1) is pressed, then turn it back off when I1 is pressed again.</p>
+		<h3>Resulting JSON</h3>		
+		<p><pre>
+  <code>{
+  &quot;rung&quot;: [
+    {
+      &quot;input&quot;: [
+        {&quot;name&quot;: &quot;I1&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;, &quot;edge&quot;: &quot;rising&quot;}
+      ],
+      &quot;output&quot;: {&quot;name&quot;: &quot;O1&quot;, &quot;type&quot;: &quot;latch&quot;, &quot;state&quot;: &quot;on&quot;}
+    },
+    {
+      &quot;input&quot;: [
+        {&quot;name&quot;: &quot;I1&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;, &quot;edge&quot;: &quot;rising&quot;},
+        {&quot;name&quot;: &quot;O1&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
+      ],
+      &quot;output&quot;: {&quot;name&quot;: &quot;O1&quot;, &quot;type&quot;: &quot;latch&quot;, &quot;state&quot;: &quot;off&quot;}
+    }
+  ]
+}</code></pre></p>
+		<script>
+ll = new LadderLogic();
+ll.parse(logic['rung'],'#diagram');		
+ll.makeInteractive();
+		</script>
+	</body>
+</html>

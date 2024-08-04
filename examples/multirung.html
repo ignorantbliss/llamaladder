@@ -1,0 +1,85 @@
+<html>
+	<head>
+		<style>
+.st0 {
+	stroke: black;
+	stroke-width: 3px;
+	fill: none;
+}
+
+.at0 {
+	stroke: red;
+	stroke-width: 3px;
+	fill: none;
+}
+		</style>
+		<script>
+var logic = {
+  "rung": [
+    {
+      "input": [
+        {"name": "Input 1", "type": "coil", "state": "on"},
+        {"name": "Input 2", "type": "coil", "state": "on"}
+      ],
+      "output": {"name": "Output", "type": "coil", "state": "on"}
+    },
+    {
+      "input": [
+        {"name": "Input 1", "type": "coil", "state": "on"},
+        {"name": "Input 3", "type": "coil", "state": "on"}
+      ],
+      "output": {"name": "Output", "type": "coil", "state": "on"}
+    },
+    {
+      "input": [
+        {"name": "Input 2", "type": "coil", "state": "on"},
+        {"name": "Input 3", "type": "coil", "state": "on"}
+      ],
+      "output": {"name": "Output", "type": "coil", "state": "on"}
+    }
+  ]
+};	
+		</script>
+		<script src="../src/llamaladder.js"></script>
+		
+	</head>
+	<body>
+		<svg id="diagram" width="800px" height="400px" viewBox="0 0 800 400">
+		</svg>				
+		<h2>An example showing several rungs converging.</h2>
+		<h3>Original Query</h3>
+		<p>Show me the ladder logic for a system that has three input coils and sets an output on if any two of those inputs are on, but leaves the output off if there are 0, 1 or 3 inputs on. Describe the logic in JSON format, using the name 'rung' for rungs.</p>
+		<h3>Resulting JSON</h3>		
+		<p><pre>
+  <code>{
+  &quot;rung&quot;: [
+    {
+      &quot;input&quot;: [
+        {&quot;name&quot;: &quot;Input 1&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;},
+        {&quot;name&quot;: &quot;Input 2&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
+      ],
+      &quot;output&quot;: {&quot;name&quot;: &quot;Output&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
+    },
+    {
+      &quot;input&quot;: [
+        {&quot;name&quot;: &quot;Input 1&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;},
+        {&quot;name&quot;: &quot;Input 3&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
+      ],
+      &quot;output&quot;: {&quot;name&quot;: &quot;Output&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
+    },
+    {
+      &quot;input&quot;: [
+        {&quot;name&quot;: &quot;Input 2&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;},
+        {&quot;name&quot;: &quot;Input 3&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
+      ],
+      &quot;output&quot;: {&quot;name&quot;: &quot;Output&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
+    }
+  ]
+}</code></pre></p>
+		<script>
+ll = new LadderLogic();
+ll.parse(logic['rung'],'#diagram');		
+ll.makeInteractive();
+		</script>
+	</body>
+</html>
