@@ -21,12 +21,6 @@ var logic = {
         {"name": "Input Coil 1", "type": "coil", "state": "on"}
       ],
       "output": {"name": "Alert 1", "type": "coil"}
-    },
-	 {
-      "input": [
-        {"name": "Input Coil 1", "type": "coil", "state": "off"}
-      ],
-      "output": {"name": "Alert 2", "type": "coil"}
     }
   ]
 };	
@@ -37,27 +31,12 @@ var logic = {
 	<body>
 		<svg id="diagram" width="800px" height="400px" viewBox="0 0 800 400">
 		</svg>				
-		<h2>A basic example of NO and NC inputs.</h2>
-		<h3>Original Query</h3>
-		<p>Show me the ladder logic (in JSON format) for a system that only turns on an output (O1) when an input (I1) is closed, and only turns on output O2 when input I2 is open.</p>
-		<h3>Resulting JSON</h3>		
-		<p><pre>
-  <code>{
-  &quot;rung&quot;: [
-    {
-      &quot;input&quot;: [
-        {&quot;name&quot;: &quot;I1&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
-      ],
-      &quot;output&quot;: {&quot;name&quot;: &quot;O1&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
-    },
-    {
-      &quot;input&quot;: [
-        {&quot;name&quot;: &quot;I2&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;off&quot;}
-      ],
-      &quot;output&quot;: {&quot;name&quot;: &quot;O2&quot;, &quot;type&quot;: &quot;coil&quot;, &quot;state&quot;: &quot;on&quot;}
-    }
-  ]
-}</code></pre></p>
+		<h2>LlamaLadder Examples</h2>		
+		<a href="basic.html">Simple NO/NC</a><br/>
+		<a href="multirung.html">Multi-Rung Interaction</a><br/>
+		<a href="latching.html">Latching</a><br/>
+		<a href="analogs.html">Analogs</a><br/>
+		<a href="ondelay.html">Timers</a><br/>
 		<script>
 ll = new LadderLogic();
 ll.parse(logic['rung'],'#diagram');		
